@@ -3,25 +3,22 @@ import random
 class URLShortener:
     def __init__(self):
         self.url_mapping = {}
-        self.themes = {
-            "marvel": ["ironman", "thor", "hulk", "blackwidow", "captainamerica"],
-            "hollywood": ["star", "cinema", "director", "script", "scene"],
-            "elements": ["hydrogen", "helium", "lithium", "beryllium", "boron"],
-            "animals": ["lion", "tiger", "elephant", "giraffe", "panda"],
-            "fruits": ["apple", "banana", "cherry", "date", "elderberry"]
+        self.words = {
+            "subjects": ["spiderman", "ironman", "batman", "superman", "cat", "dog", "elephant", "lion", "tiger", "eagle"],
+            "verbs": ["loves", "hates", "eats", "chases", "defeats", "catches", "finds", "loses", "creates", "destroys"],
+            "objects": ["apple", "banana", "carrot", "mouse", "thanos", "joker", "city", "world", "universe", "dream"]
         }
 
-    def generate_slug(self, theme):
-        words = self.themes.get(theme, ["key", "lime", "pie"])
-        word1 = random.choice(words)
-        word2 = random.choice(words)
-        word3 = random.choice(words)
-        return f"{word1}-{word2}-{word3}"
+    def generate_slug(self):
+        subject = random.choice(self.words["subjects"])
+        verb = random.choice(self.words["verbs"])
+        object = random.choice(self.words["objects"])
+        return f"{subject}-{verb}-{object}"
 
-    def shorten_url(self, long_url, theme=None):
+    def shorten_url(self, long_url):
         # Ensure we generate a unique slug
         while True:
-            slug = self.generate_slug(theme)
+            slug = self.generate_slug()
             if slug not in self.url_mapping:
                 break
         self.url_mapping[slug] = long_url
