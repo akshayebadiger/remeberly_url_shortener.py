@@ -1,7 +1,7 @@
 import streamlit as st
 from url_shortener import URLShortener
 
-st.title('Rememberly')
+st.title('Remember.ly')
 
 url_shortener = URLShortener()
 
